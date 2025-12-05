@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { Userregister,loginUser } from "../controller/userprofile_controller.js";
-const router=Router();
+import { 
+  Userregister, 
+  loginUser, 
+  logoutUser 
+} from "../controller/userprofile_controller.js";
 
+const router = Router();
+router.post("/register", Userregister);
+router.post("/login", loginUser);
+router.post("/logout", logoutUser);
 
-
-router.route("/registeruser").post(Userregister)
-router.route("/loginuser").post(loginUser)
-
-export default router
+export default router;

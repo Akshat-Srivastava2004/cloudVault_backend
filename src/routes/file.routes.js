@@ -1,0 +1,21 @@
+import { Router } from "express";
+
+import { Userregister, loginUser, logoutUser } from "../controller/userprofile_controller.js";
+import { createWorkspace, getAllWorkspaces, getWorkspaceById, updateWorkspace, deleteWorkspace } from "../controller/workspace_controller.js";
+import { uploadFile, listFiles, deleteFile } from "../controller/file_controller.js";import { sendMessage,getMessages } from "../controller/chatmessage_controller.js";
+import upload from "../middleware/multer.js";
+const router = Router();
+router.post("/registeruser", Userregister);
+router.post("/loginuser", loginUser);
+router.post("/logout", logoutUser);
+router.post("/workspace", createWorkspace);
+router.get("/workspaces", getAllWorkspaces);
+router.get("/workspace/:id", getWorkspaceById);
+router.put("/workspace/:id", updateWorkspace);
+router.delete("/workspace/:id", deleteWorkspace);
+router.post("/upload", upload.single("file"), uploadFile);
+router.get("/files", listFiles);
+router.delete("/delete/:key", deleteFile);
+router.post("/chat/send", sendMessage);
+router.get("/chat/:workspaceid", getMessages);
+export default router;
